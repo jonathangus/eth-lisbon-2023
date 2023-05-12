@@ -474,6 +474,7 @@ export interface TBANFTInterface extends utils.Interface {
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
+    "Created(address,uint256,string)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
@@ -485,6 +486,10 @@ export interface TBANFTInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
   getEvent(
     nameOrSignatureOrTopic: "ApprovalForAll(address,address,bool)"
+  ): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Created"): EventFragment;
+  getEvent(
+    nameOrSignatureOrTopic: "Created(address,uint256,string)"
   ): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(
@@ -519,6 +524,18 @@ export type ApprovalForAllEvent = TypedEvent<
 >;
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
+
+export interface CreatedEventObject {
+  accountAddress: string;
+  tokenId: BigNumber;
+  handle: string;
+}
+export type CreatedEvent = TypedEvent<
+  [string, BigNumber, string],
+  CreatedEventObject
+>;
+
+export type CreatedEventFilter = TypedEventFilter<CreatedEvent>;
 
 export interface OwnershipTransferredEventObject {
   previousOwner: string;
@@ -1263,6 +1280,17 @@ export interface TBANFT extends BaseContract {
       operator?: PromiseOrValue<string> | null,
       approved?: null
     ): ApprovalForAllEventFilter;
+
+    "Created(address,uint256,string)"(
+      accountAddress?: null,
+      tokenId?: null,
+      handle?: null
+    ): CreatedEventFilter;
+    Created(
+      accountAddress?: null,
+      tokenId?: null,
+      handle?: null
+    ): CreatedEventFilter;
 
     "OwnershipTransferred(address,address)"(
       previousOwner?: PromiseOrValue<string> | null,

@@ -32,6 +32,8 @@ contract TBANFT is ERC721, Ownable {
 
     uint256 private tokenCount = 0;
 
+    event Created(address accountAddress, uint256 tokenId, string handle);
+
     constructor(
         address _erc6551Registry,
         address _accountImplementation,
@@ -105,5 +107,11 @@ contract TBANFT is ERC721, Ownable {
 
         IMockProfileCreationProxy(profileCreationProxyAddress)
             .proxyCreateProfile(dat);
+
+        emit Created(
+            newAccountAddress,
+            tokenId,
+            string(abi.encodePacked(vars.handle, '.test'))
+        );
     }
 }
