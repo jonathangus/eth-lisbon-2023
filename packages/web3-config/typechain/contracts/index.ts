@@ -3,5 +3,7 @@
 /* eslint-disable */
 import type * as aave from "./aave";
 export type { aave };
+import type * as account from "./account";
+export type { account };
 import type * as erc6551 from "./erc6551";
 export type { erc6551 };
