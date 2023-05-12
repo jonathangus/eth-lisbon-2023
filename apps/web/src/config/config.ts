@@ -1,5 +1,5 @@
 import { Chain } from 'wagmi';
-import { goerli } from 'wagmi/chains';
+import { polygonMumbai } from 'wagmi/chains';
 
 type Config = {
   isProduction: boolean;
@@ -9,6 +9,6 @@ type Config = {
 
 export const config: Config = {
   isProduction: process.env.NODE_ENV === 'production',
-  defaultChains: [goerli],
-  fallbackId: goerli.id,
+  defaultChains: [polygonMumbai],
+  fallbackId: polygonMumbai.id,
 };
