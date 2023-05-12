@@ -5,14 +5,20 @@ import { NotificationsProvider } from 'reapop';
 import NotificationHandler from '../components/NotificationHandler';
 import '../style.css';
 
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+
+const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NotificationsProvider>
-      <Web3Provider>
-        <Component {...pageProps} />
-        <NotificationHandler />
-      </Web3Provider>
-    </NotificationsProvider>
+    <QueryClientProvider client={queryClient}>
+      <NotificationsProvider>
+        <Web3Provider>
+          <Component {...pageProps} />
+          <NotificationHandler />
+        </Web3Provider>
+      </NotificationsProvider>
+    </QueryClientProvider>
   );
 }
 

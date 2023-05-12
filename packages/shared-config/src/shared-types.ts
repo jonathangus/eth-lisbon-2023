@@ -37,3 +37,12 @@ export type QueryResult<T> = Pick<
   | 'isSuccess'
   | 'refetch'
 >;
+
+export type TBAToken = {
+  id: string;
+  handle: string;
+  transactionHash: string;
+  tokenId: string;
+  ownedBy: string;
+  accountAddress: string;
+};

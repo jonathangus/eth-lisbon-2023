@@ -86,6 +86,12 @@
       },
       {
         "indexed": false,
+        "internalType": "address",
+        "name": "ownedBy",
+        "type": "address"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"

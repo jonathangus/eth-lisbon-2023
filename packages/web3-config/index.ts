@@ -1,11 +1,8 @@
-import counterDeploymentGoerli from './deployments/goerli/Counter.json';
 export * from './typechain';
 import * as _typechain from './typechain';
 import { localhost, goerli } from 'wagmi/chains';
 
-export const contracts = {
-  Counter: _typechain.Counter__factory.name,
-};
+export const contracts = {};
 
 export type AvailableContractNames = keyof typeof contracts;
 
@@ -26,9 +23,7 @@ export const addresses: Record<number, AddressRecord> = {
   // [localhost.id]: {
   //   [contracts.Counter]: '0x000',
   // },
-  [goerli.id]: {
-    [contracts.Counter]: counterDeploymentGoerli.address,
-  },
+  [goerli.id]: {},
 };
 
 export const getAddress = (

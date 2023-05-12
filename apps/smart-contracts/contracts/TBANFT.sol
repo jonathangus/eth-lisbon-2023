@@ -32,7 +32,12 @@ contract TBANFT is ERC721, Ownable {
 
     uint256 private tokenCount = 0;
 
-    event Created(address accountAddress, uint256 tokenId, string handle);
+    event Created(
+        address accountAddress,
+        address ownedBy,
+        uint256 tokenId,
+        string handle
+    );
 
     constructor(
         address _erc6551Registry,
@@ -110,6 +115,7 @@ contract TBANFT is ERC721, Ownable {
 
         emit Created(
             newAccountAddress,
+            to,
             tokenId,
             string(abi.encodePacked(vars.handle, '.test'))
         );
