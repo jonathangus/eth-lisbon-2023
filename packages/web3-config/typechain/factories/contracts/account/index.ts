@@ -2,5 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as interfaces from "./interfaces";
+export { Account__factory } from "./Account__factory";
 export { AccountGuardian__factory } from "./AccountGuardian__factory";
 export { AccountProxy__factory } from "./AccountProxy__factory";
