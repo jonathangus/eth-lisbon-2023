@@ -3,6 +3,7 @@ import React from 'react';
 import Web3Provider from '../components/Web3Provider';
 import { NotificationsProvider } from 'reapop';
 import NotificationHandler from '../components/NotificationHandler';
+import '../style.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
