@@ -1,6 +1,7 @@
-# Web3 fullstack starter
+# ETH Lisbon 2023
+tbd
 
-My ideal monorepo setup for working with fullstack web3 development. Can be used for quick prototyping or built on top on for production ready projects.
+## Boilerplate
 
 ### Core packages
 - `ethers`
