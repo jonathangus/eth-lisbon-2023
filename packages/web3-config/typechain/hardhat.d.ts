@@ -40,6 +40,22 @@ declare module "hardhat/types/runtime" {
       name: "IGhoToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IGhoToken__factory>;
+    getContractFactory(
+      name: "ERC6551Registry",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC6551Registry__factory>;
+    getContractFactory(
+      name: "IERC6551Account",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC6551Account__factory>;
+    getContractFactory(
+      name: "IERC6551AccountProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC6551AccountProxy__factory>;
+    getContractFactory(
+      name: "IERC6551Registry",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC6551Registry__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -76,6 +92,26 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IGhoToken>;
+    getContractAt(
+      name: "ERC6551Registry",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC6551Registry>;
+    getContractAt(
+      name: "IERC6551Account",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC6551Account>;
+    getContractAt(
+      name: "IERC6551AccountProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC6551AccountProxy>;
+    getContractAt(
+      name: "IERC6551Registry",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC6551Registry>;
 
     // default types
     getContractFactory(

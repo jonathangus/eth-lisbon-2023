@@ -20,3 +20,11 @@ export type { IERC20Mintable } from "./contracts/aave/interfaces/IERC20Mintable"
 export { IERC20Mintable__factory } from "./factories/contracts/aave/interfaces/IERC20Mintable__factory";
 export type { IGhoToken } from "./contracts/aave/interfaces/IGhoToken";
 export { IGhoToken__factory } from "./factories/contracts/aave/interfaces/IGhoToken__factory";
+export type { ERC6551Registry } from "./contracts/erc6551/ERC6551Registry";
+export { ERC6551Registry__factory } from "./factories/contracts/erc6551/ERC6551Registry__factory";
+export type { IERC6551Account } from "./contracts/erc6551/interfaces/IERC6551Account.sol/IERC6551Account";
+export { IERC6551Account__factory } from "./factories/contracts/erc6551/interfaces/IERC6551Account.sol/IERC6551Account__factory";
+export type { IERC6551AccountProxy } from "./contracts/erc6551/interfaces/IERC6551Account.sol/IERC6551AccountProxy";
+export { IERC6551AccountProxy__factory } from "./factories/contracts/erc6551/interfaces/IERC6551Account.sol/IERC6551AccountProxy__factory";
+export type { IERC6551Registry } from "./contracts/erc6551/interfaces/IERC6551Registry";
+export { IERC6551Registry__factory } from "./factories/contracts/erc6551/interfaces/IERC6551Registry__factory";
