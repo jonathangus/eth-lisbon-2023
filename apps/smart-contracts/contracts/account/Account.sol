@@ -109,38 +109,6 @@ contract Account is
         _;
     }
 
-    // @notice Validate that the userOperation is valid. Requirements:
-    // 1. Only calleable by EntryPoint
-    // 2. Signature is that of the contract owner
-    // 3. Nonce is correct
-    /// @param userOp - ERC-4337 User Operation
-    /// @param userOpHash - Hash of the user operation, entryPoint address and chainId
-    /// @param aggregator - Signature aggregator
-    /// @param missingWalletFunds - Amount of ETH to pay the EntryPoint for processing the transaction
-    function validateUserOp(
-        UserOperation calldata userOp,
-        bytes32 userOpHash, // TODO: Shouldn't this hash be constructed internally over the userOp? Why is it passed?
-        address aggregator,
-        uint256 missingWalletFunds
-    ) external onlyEntryPoint returns (uint256 deadline) {
-        // Validate signature
-        _validateSignature(userOp, userOpHash);
-
-        // TODO: Verify this is correct
-        // UserOp may have initCode to deploy a wallet, in which case do not validate the nonce. Used in accountCreation
-        if (userOp.initCode.length == 0) {
-            // Validate nonce is correct - protect against replay attacks
-            uint256 currentNonce = nonce();
-            require(currentNonce == userOp.nonce, '  Invalid nonce');
-
-            _incrementNonce();
-        }
-
-        // Interactions
-        _prefundEntryPoint(missingWalletFunds);
-        return 0;
-    }
-
     function executeFromEntryPoint(
         address target,
         uint256 value,
@@ -152,21 +120,6 @@ contract Account is
             payload
         );
         Address.verifyCallResult(success, returndata, errorMessage);
-    }
-
-    /// @notice Pay the EntryPoint in ETH ahead of time for the transaction that it will execute
-    ///         Amount to pay may be zero, if the entryPoint has sufficient funds or if a paymaster is used
-    ///         to pay the entryPoint through other means
-    /// @param amount - Amount of ETH to pay the entryPoint
-    function _prefundEntryPoint(uint256 amount) internal onlyEntryPoint {
-        if (amount == 0) {
-            return;
-        }
-
-        (bool success, ) = payable(address(_entryPoint)).call{value: amount}(
-            ''
-        );
-        require(success, 'SmartWallet: ETH entrypoint payment failed');
     }
 
     /// @dev executes a low-level call against an account if the caller is authorized to make calls

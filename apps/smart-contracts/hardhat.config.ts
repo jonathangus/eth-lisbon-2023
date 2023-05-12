@@ -26,7 +26,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const ALCHEMY_KEY = process.env.ALCHEMY_KEY;
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.18',
+  solidity: '0.8.13',
   defaultNetwork: 'hardhat',
 
   networks: {

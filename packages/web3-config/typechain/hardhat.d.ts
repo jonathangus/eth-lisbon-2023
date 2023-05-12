@@ -73,9 +73,21 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC1155Receiver__factory>;
     getContractFactory(
+      name: "IERC20Permit",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Permit__factory>;
+    getContractFactory(
       name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
+      name: "ERC721",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC721__factory>;
+    getContractFactory(
+      name: "IERC721Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC721Metadata__factory>;
     getContractFactory(
       name: "IERC721",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -84,6 +96,10 @@ declare module "hardhat/types/runtime" {
       name: "IERC721Receiver",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC721Receiver__factory>;
+    getContractFactory(
+      name: "ERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC165__factory>;
     getContractFactory(
       name: "IERC165",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -140,6 +156,18 @@ declare module "hardhat/types/runtime" {
       name: "IERC6551Registry",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC6551Registry__factory>;
+    getContractFactory(
+      name: "ILensHub",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ILensHub__factory>;
+    getContractFactory(
+      name: "IMockProfileCreationProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IMockProfileCreationProxy__factory>;
+    getContractFactory(
+      name: "TBANFT",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TBANFT__factory>;
 
     getContractAt(
       name: "BaseAccount",
@@ -217,10 +245,25 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC1155Receiver>;
     getContractAt(
+      name: "IERC20Permit",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Permit>;
+    getContractAt(
       name: "IERC20",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "ERC721",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC721>;
+    getContractAt(
+      name: "IERC721Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC721Metadata>;
     getContractAt(
       name: "IERC721",
       address: string,
@@ -231,6 +274,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC721Receiver>;
+    getContractAt(
+      name: "ERC165",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC165>;
     getContractAt(
       name: "IERC165",
       address: string,
@@ -301,6 +349,21 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC6551Registry>;
+    getContractAt(
+      name: "ILensHub",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ILensHub>;
+    getContractAt(
+      name: "IMockProfileCreationProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IMockProfileCreationProxy>;
+    getContractAt(
+      name: "TBANFT",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TBANFT>;
 
     // default types
     getContractFactory(
