@@ -1,8 +1,11 @@
 export * from './typechain';
 import * as _typechain from './typechain';
-import { localhost, goerli } from 'wagmi/chains';
+import { polygonMumbai } from 'wagmi/chains';
+import nftAddress from './deployments/mumbai/TBANFT.json';
 
-export const contracts = {};
+export const contracts = {
+  TbaNFT: _typechain.TBANFT__factory.name,
+};
 
 export type AvailableContractNames = keyof typeof contracts;
 
@@ -23,7 +26,9 @@ export const addresses: Record<number, AddressRecord> = {
   // [localhost.id]: {
   //   [contracts.Counter]: '0x000',
   // },
-  [goerli.id]: {},
+  [polygonMumbai.id]: {
+    [contracts.TbaNFT]: nftAddress.address,
+  },
 };
 
 export const getAddress = (

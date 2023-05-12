@@ -92,9 +92,16 @@ export function useContractWrite<
     ...config,
     request: undefined,
     onError: _onError,
-    chainId: 5,
+    // chainId: 5,
   };
 
+  console.log({
+    address: address as Address,
+    abi: typechainFactory.abi as any,
+    functionName: method,
+    args: args || [],
+    enabled,
+  });
   if (options?.reckless) {
     finalOptions = {
       ...finalOptions,

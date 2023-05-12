@@ -2,3 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as interfaces from "./interfaces";
+export { Errors__factory } from "./Errors__factory";
+export { MockProfileCreationProxy__factory } from "./MockProfileCreationProxy__factory";

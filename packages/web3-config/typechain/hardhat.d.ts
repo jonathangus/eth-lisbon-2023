@@ -157,9 +157,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC6551Registry__factory>;
     getContractFactory(
+      name: "Errors",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Errors__factory>;
+    getContractFactory(
       name: "ILensHub",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ILensHub__factory>;
+    getContractFactory(
+      name: "MockProfileCreationProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MockProfileCreationProxy__factory>;
     getContractFactory(
       name: "IMockProfileCreationProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -350,10 +358,20 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC6551Registry>;
     getContractAt(
+      name: "Errors",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Errors>;
+    getContractAt(
       name: "ILensHub",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.ILensHub>;
+    getContractAt(
+      name: "MockProfileCreationProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MockProfileCreationProxy>;
     getContractAt(
       name: "IMockProfileCreationProxy",
       address: string,

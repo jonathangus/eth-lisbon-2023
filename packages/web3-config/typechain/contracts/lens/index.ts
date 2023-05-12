@@ -3,3 +3,5 @@
 /* eslint-disable */
 import type * as interfaces from "./interfaces";
 export type { interfaces };
+export type { Errors } from "./Errors";
+export type { MockProfileCreationProxy } from "./MockProfileCreationProxy";

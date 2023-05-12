@@ -80,8 +80,12 @@ export type { IERC6551AccountProxy } from "./contracts/erc6551/interfaces/IERC65
 export { IERC6551AccountProxy__factory } from "./factories/contracts/erc6551/interfaces/IERC6551Account.sol/IERC6551AccountProxy__factory";
 export type { IERC6551Registry } from "./contracts/erc6551/interfaces/IERC6551Registry";
 export { IERC6551Registry__factory } from "./factories/contracts/erc6551/interfaces/IERC6551Registry__factory";
+export type { Errors } from "./contracts/lens/Errors";
+export { Errors__factory } from "./factories/contracts/lens/Errors__factory";
 export type { ILensHub } from "./contracts/lens/interfaces/ILensHub";
 export { ILensHub__factory } from "./factories/contracts/lens/interfaces/ILensHub__factory";
+export type { MockProfileCreationProxy } from "./contracts/lens/MockProfileCreationProxy";
+export { MockProfileCreationProxy__factory } from "./factories/contracts/lens/MockProfileCreationProxy__factory";
 export type { IMockProfileCreationProxy } from "./contracts/TBANFT.sol/IMockProfileCreationProxy";
 export { IMockProfileCreationProxy__factory } from "./factories/contracts/TBANFT.sol/IMockProfileCreationProxy__factory";
 export type { TBANFT } from "./contracts/TBANFT.sol/TBANFT";
