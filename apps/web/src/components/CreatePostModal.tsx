@@ -50,7 +50,7 @@ const CreatePostModal = ({ open, onClose }: Props) => {
       reckless: true,
       onSuccess: () => {
         queryClient.invalidateQueries(['stats']);
-
+        onClose();
         setTimeout(() => {
           statsQuery.refetch();
         }, 1500);
@@ -127,6 +127,11 @@ const CreatePostModal = ({ open, onClose }: Props) => {
             placeholder="Whats on your mind? 🌿🌿"
           />
         </Modal.Body>
+        {isLoadingIpfs && (
+          <div>
+            uploading to ipfs... <Loading color="currentColor" />
+          </div>
+        )}
         <Modal.Footer>
           <Button auto flat color="error" onPress={closeHandler}>
             Close

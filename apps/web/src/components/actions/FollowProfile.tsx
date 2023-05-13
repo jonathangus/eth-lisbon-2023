@@ -57,17 +57,18 @@ const FollowProfile = ({ token }: Props) => {
   };
 
   return (
-    <div>
+    <div className="flex">
+      <TxDisplay hash={writeResult?.data?.hash} />
       <Button
         onClick={follow}
         disabled={isSame || !selectedToken}
         shadow
         color="primary"
         auto
+        className="ml-2"
       >
         {isLoading ? <Loading color="currentColor" size="sm" /> : 'follow'}
       </Button>
-      <TxDisplay hash={writeResult?.data?.hash} />
     </div>
   );
 };

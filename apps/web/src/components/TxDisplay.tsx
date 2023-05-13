@@ -9,21 +9,21 @@ export const formatAddressToShort = (
   options?: { start?: number; end?: number }
 ): string =>
   [
-    address.slice(0, options?.start || 12),
+    address.slice(0, options?.start || 4),
     '...',
-    address.slice(-(options?.end || 12)),
+    address.slice(-(options?.end || 4)),
   ].join('');
 
 const TxDisplay = ({ hash }: Props) => {
   if (hash) {
     return (
-      <Text blockquote>
+      <Text blockquote className="mt-0 p-2">
         <a
           href={`https://mumbai.polygonscan.com/tx/${hash}`}
           target="_blank"
           rel="noreferrer"
         >
-          {formatAddressToShort(hash)}
+          tx: {formatAddressToShort(hash)}
         </a>
       </Text>
     );
