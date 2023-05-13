@@ -64,6 +64,7 @@ export const usePostsQuery = (tokens: TBAToken[]) => {
     },
     {
       enabled: Boolean(tokens.length),
+      refetchInterval: 2000,
     }
   );
 

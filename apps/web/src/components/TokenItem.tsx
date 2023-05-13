@@ -14,25 +14,6 @@ const TokenItem = ({ token }: Props) => {
       <div className="  w-[400px]">
         <TokenDisplay token={token} />
       </div>
-      {/* <div className="flex-1">
-        <div>
-          <b>{token.accountAddress}</b>
-          <div>Token id: {token.tokenId}</div>
-          <div>{token.handle}.lens</div>
-          {stats.data && (
-            <div>
-              <div>followers:{stats.data.totalFollowers}</div>
-              <div>collects:{stats.data.totalCollects}</div>
-              <div>posts:{stats.data.totalPosts}</div>
-              <div>totalFollowing: {stats.data.totalFollowing}</div>
-            </div>
-          )}
-
-          <div>
-            <FollowProfile token={token} />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

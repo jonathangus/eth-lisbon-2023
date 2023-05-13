@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import TokenHeader from '../components/TokenHeader';
 import { useTokens } from '../hooks/useTokens';
-import { Loading } from '@nextui-org/react';
+import { Loading, Text } from '@nextui-org/react';
 import LensPosts from '../components/LensPosts';
 import TokenNFTs from '../components/profile/TokenNFTs';
 import TokenERC20 from '../components/profile/TokenERC20';
@@ -30,6 +30,8 @@ const Page = () => {
     <div>
       <TokenHeader token={selectedToken} />
       <div className="h-12" />
+      <Text h2>Posts this token bound account have posted</Text>
+
       <LensPosts tokens={[selectedToken]} />
       <div className="h-12" />
       <TokenNFTs token={selectedToken} />

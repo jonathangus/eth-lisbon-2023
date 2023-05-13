@@ -10,7 +10,7 @@ const TokenView = ({ tokens }: Props) => {
       <Text h2 className=" mt-8 mb-4">
         Created token bound accounts:
       </Text>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-6 gap-4">
         {tokens?.map((token) => (
           <div key={token.handle}>
             <TokenItem token={token} />

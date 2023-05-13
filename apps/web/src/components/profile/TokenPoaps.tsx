@@ -10,24 +10,20 @@ const poaps = [
     img: ' https://assets.poap.xyz/aave-40-eth-lisbon-2023-logo-1683715280139.gif?size=small',
   },
   {
-    name: 'Aave @ Eth Lisbon',
-    img: ' https://assets.poap.xyz/aave-40-eth-lisbon-2023-logo-1683715280139.gif?size=small',
+    name: 'Aave @ Eth Denver',
+    img: ' https://assets.poap.xyz/aave-40-eth-denver-2023-logo-1677530025540.gif',
   },
   {
-    name: 'Aave @ Eth Lisbon',
-    img: ' https://assets.poap.xyz/aave-40-eth-lisbon-2023-logo-1683715280139.gif?size=small',
+    name: 'Lens @ Eth Denver',
+    img: 'https://assets.poap.xyz/lens-40-eth-denver-2023-logo-1677526196626.gif',
   },
   {
-    name: 'Aave @ Eth Lisbon',
-    img: ' https://assets.poap.xyz/aave-40-eth-lisbon-2023-logo-1683715280139.gif?size=small',
+    name: 'ETHGlobal Lisbon | 1inch',
+    img: ' https://assets.poap.xyz/10d70a3a-3d91-49c9-a2d6-4b5c32aa4ad5.gif',
   },
   {
-    name: 'Aave @ Eth Lisbon',
-    img: ' https://assets.poap.xyz/aave-40-eth-lisbon-2023-logo-1683715280139.gif?size=small',
-  },
-  {
-    name: 'Aave @ Eth Lisbon',
-    img: ' https://assets.poap.xyz/aave-40-eth-lisbon-2023-logo-1683715280139.gif?size=small',
+    name: 'rAave #2 Lisbon',
+    img: ' https://assets.poap.xyz/raave-2-lisbon-2021-logo-1632486977223.png',
   },
 ];
 
