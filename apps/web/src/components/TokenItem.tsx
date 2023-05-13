@@ -14,7 +14,7 @@ const TokenItem = ({ token }: Props) => {
       <div className="  w-[400px]">
         <TokenDisplay token={token} />
       </div>
-      <div className="flex-1">
+      {/* <div className="flex-1">
         <div>
           <b>{token.accountAddress}</b>
           <div>Token id: {token.tokenId}</div>
@@ -32,7 +32,7 @@ const TokenItem = ({ token }: Props) => {
             <FollowProfile token={token} />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

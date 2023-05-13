@@ -47,3 +47,31 @@ export type TBAToken = {
   accountAddress: string;
   profileId: number;
 };
+
+export type LensPost = {
+  id: string;
+  metadata: {
+    name: string;
+    description: string;
+    content: string;
+    image: string;
+    animatedUrl?: string;
+  };
+
+  profile: {
+    id: string;
+    name: string;
+    bio: string;
+    followNftAddress: string;
+    metadata: string;
+    handle: string;
+    ownedBy: string;
+    picture: {
+      original: {
+        url: string;
+        width: number;
+        height: number;
+      };
+    };
+  };
+};

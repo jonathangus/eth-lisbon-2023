@@ -46,6 +46,10 @@ const MintHandleView = () => {
     });
   };
 
+  if (!address) {
+    return <div />;
+  }
+
   return (
     <div className="flex mr-4">
       <Input

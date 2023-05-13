@@ -1,41 +1,40 @@
 import { Dropdown, Radio } from '@nextui-org/react';
 import { useTokens } from '../hooks/useTokens';
 import { useSelectionStore } from '../store/useSelectionStore';
-
-const hardCodedHandles = ['devdev.test', 'stani.test', 'nader.test'];
+import { useAccount } from 'wagmi';
 
 const SelectHandle = () => {
+  const { address } = useAccount();
   const { data: tokens = [] } = useTokens();
   const handles = [...tokens.map((token) => token.handle)];
   const setToken = useSelectionStore((state) => state.setToken);
   const selectedToken = useSelectionStore((state) => state.selectedToken);
   const selectedHandle = selectedToken?.handle;
 
-  return (
-    <div>
-      <div>
-        Select one of yours nfts and execute transactions from that token bound
-        account
-      </div>
+  if (!address) {
+    return <div />;
+  }
 
-      <Radio.Group
-        orientation="horizontal"
-        className="flex-wrap"
-        value={selectedHandle}
-        onChange={(value) => {
-          const token = tokens.find((tok) => tok.handle === value);
+  return (
+    <Dropdown>
+      <Dropdown.Button flat>
+        {selectedHandle || 'select account'}
+      </Dropdown.Button>
+
+      <Dropdown.Menu
+        onAction={(val) => {
+          const token = tokens.find((tok) => tok.handle === val);
           if (token) {
             setToken(token);
           }
         }}
+        aria-label="account"
       >
         {handles.map((handle) => (
-          <Radio key={handle} value={handle} color="primary">
-            {handle}.lens
-          </Radio>
+          <Dropdown.Item key={handle}>{handle}.lens</Dropdown.Item>
         ))}
-      </Radio.Group>
-    </div>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 

@@ -8,6 +8,10 @@ import { Inter } from '@next/font/google';
 import { NextUIProvider, createTheme } from '@nextui-org/react';
 
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import SelectHandle from '../components/SelectHandle';
+import MintHandleView from '../components/MintHandleView';
+import CreatePostButton from '../components/CreatePostButton';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -52,7 +56,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <NotificationsProvider>
             <Web3Provider>
-              <Component {...pageProps} />
+              <div className="p-4">
+                <div className="flex justify-between mb-4">
+                  <SelectHandle />
+                  <div className="flex">
+                    <CreatePostButton />
+                    <MintHandleView />
+                    <ConnectButton />
+                  </div>
+                </div>
+                <Component {...pageProps} />
+              </div>
               <NotificationHandler />
             </Web3Provider>
           </NotificationsProvider>

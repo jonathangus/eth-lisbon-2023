@@ -1,18 +1,28 @@
 import { TBAToken } from 'shared-config';
-import LensHandle from './LensHandle';
+import Link from 'next/link';
 
 type Props = { token: TBAToken };
+const formatAddressToShort = (
+  address: string,
+  options?: { start?: number; end?: number }
+): string =>
+  [
+    address.slice(0, options?.start || 4),
+    '...',
+    address.slice(-(options?.end || 4)),
+  ].join('');
 
 const TokenDisplay = ({ token }: Props) => {
-  const nodes = [<LensHandle handle={token.handle} />];
   return (
     <div className="aspect-square relative bg-lens flex justify-center items-center">
-      <div className="text-[50px]">#{token.tokenId}</div>
-      <div className="absolute bottom-2 w-full px-2 ">
-        {nodes.map((node) => (
-          <div className="w-28">{node}</div>
-        ))}
-      </div>
+      <Link href={`/${token.tokenId}`} className="text-white">
+        <div className="text-[50px]">#{token.tokenId}</div>
+
+        <div>
+          <div>{token.handle}</div>
+          <div>{formatAddressToShort(token.accountAddress)}</div>
+        </div>
+      </Link>
     </div>
   );
 };
