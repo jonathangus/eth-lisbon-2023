@@ -49,9 +49,10 @@ const CreatePostModal = ({ open, onClose }: Props) => {
       address: selectedToken?.accountAddress,
       reckless: true,
       onSuccess: () => {
-        queryClient.invalidateQueries(['stats']);
         onClose();
         setTimeout(() => {
+          queryClient.invalidateQueries(['stats', selectedToken.profileId]);
+
           statsQuery.refetch();
         }, 1500);
       },

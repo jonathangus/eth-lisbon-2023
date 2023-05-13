@@ -29,9 +29,8 @@ const FollowProfile = ({ token }: Props) => {
       address: selectedToken?.accountAddress,
       reckless: true,
       onSuccess: () => {
-        queryClient.invalidateQueries(['stats']);
-
         setTimeout(() => {
+          queryClient.invalidateQueries(['stats', token.tokenId]);
           statsQuery.refetch();
         }, 1500);
       },

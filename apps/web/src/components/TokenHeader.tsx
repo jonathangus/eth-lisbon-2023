@@ -5,7 +5,6 @@ import { useProfileStatsQuery } from '../hooks/useProfileStatsQuery';
 import { Link, Text } from '@nextui-org/react';
 import { useAddress } from 'wagmi-lfg';
 import { TBANFT__factory } from 'web3-config';
-import NextLink from 'next/link';
 
 type Props = {
   token: TBAToken;
@@ -14,18 +13,23 @@ type Props = {
 const TokenHeader = ({ token }: Props) => {
   const stats = useProfileStatsQuery(token.profileId);
   const address = useAddress(TBANFT__factory);
+
   return (
     <div className="py-24 px-12  bg-slate-300">
       <div className="flex">
         <div className=" w-[200px]">
           <TokenDisplay token={token} />
         </div>
-        <div className="ml-2">
+        <div className="ml-4">
           <Text className="m-0" h5>
             {token.accountAddress}
           </Text>
 
-          <Text h4 className="text-[#00501e]">
+          <Text className="m-0 " small>
+            owned by: {token.ownedBy}
+          </Text>
+
+          <Text h4 className="text-[#00501e] mt-4">
             {token.handle}.lens
           </Text>
 
@@ -63,7 +67,7 @@ const TokenHeader = ({ token }: Props) => {
 
               <div>
                 <Text h4 className="m-0">
-                  totalFollowing:
+                  following:
                 </Text>
                 <Text>{stats.data.totalFollowing}</Text>
               </div>

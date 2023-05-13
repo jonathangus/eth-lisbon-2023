@@ -1,4 +1,4 @@
-type Props = { tokenId: number };
+type Props = { tokenId: number; rounded?: boolean };
 
 function hexToRgb(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -24,12 +24,16 @@ var stringToColour = function (str) {
   return colour;
 };
 
-const GetGradientIcon = ({ tokenId, ...props }: Props) => {
+const GetGradientIcon = ({ tokenId, rounded = true, ...props }: Props) => {
   const color = stringToColour((tokenId * 100).toString() + tokenId);
   const rgb = hexToRgb(color);
 
   return (
-    <div className="aspect-square   rounded-full overflow-hidden  ">
+    <div
+      className={
+        'aspect-square     overflow-hidden  ' + (rounded ? 'rounded-full' : '')
+      }
+    >
       <div
         className="w-full h-full"
         style={{

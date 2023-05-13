@@ -33,7 +33,7 @@ const LensPosts = ({ tokens, withFollow = true }: Props) => {
         <Card css={{ p: '$6' }}>
           <Card.Header>
             <div className="w-10 h-10">
-              <GetGradientIcon tokenId={post.token?.tokenId} />
+              <GetGradientIcon tokenId={post.token?.tokenId} rounded />
             </div>
 
             <Grid.Container css={{ pl: '$6' }}>

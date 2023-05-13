@@ -28,6 +28,7 @@ export const useNFTsOwnedQuery = (address?: string) => {
     },
     {
       enabled: Boolean(address),
+      refetchInterval: 3000,
     }
   );
 

@@ -1,6 +1,7 @@
 import { TBAToken } from 'shared-config';
 import Link from 'next/link';
 import GetGradientIcon from './GetGradientIcon';
+import { Card, Text } from '@nextui-org/react';
 
 type Props = { token: TBAToken };
 const formatAddressToShort = (
@@ -15,19 +16,35 @@ const formatAddressToShort = (
 
 const TokenDisplay = ({ token }: Props) => {
   return (
-    <div className=" relative   aspect-square     overflow-hidden  ">
-      <div className="py">
-        <GetGradientIcon tokenId={token.tokenId} />
-      </div>
+    <Card>
+      <div className=" relative  sm-shadow  aspect-square     overflow-hidden  ">
+        <div className="py">
+          <GetGradientIcon rounded={false} tokenId={token.tokenId} />
+        </div>
 
-      <div className="center-it absolute text-white text-l text-bold text-center">
-        <div className=" 2">{token.handle}.lens</div>
+        <div className="center-it absolute text-white text-l text-bold text-center">
+          <div className=" 2">{token.handle}.lens</div>
 
-        <div className=" ">
-          <div>{formatAddressToShort(token.accountAddress)}</div>
+          <div className=" ">
+            <div>{formatAddressToShort(token.accountAddress)}</div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <Card.Footer
+        isBlurred
+        css={{
+          position: 'absolute',
+          bgBlur: '#0f111466',
+          bottom: 0,
+          zIndex: 1,
+        }}
+      >
+        <Text color="#d1d1d1" size={12}>
+          TBA NFT #{token.tokenId}
+        </Text>
+      </Card.Footer>
+    </Card>
   );
 };
 
