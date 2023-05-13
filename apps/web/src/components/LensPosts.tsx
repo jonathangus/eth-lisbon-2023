@@ -5,6 +5,7 @@ import { Card, Grid, Text } from '@nextui-org/react';
 import Link from 'next/link';
 import FollowProfile from './actions/FollowProfile';
 import { useSelectionStore } from '../store/useSelectionStore';
+import GetGradientIcon from './GetGradientIcon';
 
 type Props = { tokens: TBAToken[] };
 
@@ -31,7 +32,9 @@ const LensPosts = ({ tokens }: Props) => {
       {items.map((post) => (
         <Card css={{ p: '$6' }}>
           <Card.Header>
-            <Text h2>#{post.token?.tokenId}</Text>
+            <div className="w-10 h-10">
+              <GetGradientIcon tokenId={post.token?.tokenId} />
+            </div>
 
             <Grid.Container css={{ pl: '$6' }}>
               <Grid xs={12}>
