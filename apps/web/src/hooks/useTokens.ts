@@ -1,11 +1,11 @@
 import request, { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { TBAToken } from '../../../../packages/shared-config/src';
-import { useAccount } from 'wagmi';
+import { graphqlClient } from '../graph-clint';
 
 const graphQuery = gql`
-  query Token($address: Bytes) {
-    createds(where: { ownedBy: $address }) {
+  query {
+    createds {
       id
       handle
       transactionHash
@@ -18,13 +18,8 @@ const graphQuery = gql`
 `;
 
 export const useTokens = () => {
-  const { address } = useAccount();
-  const query = useQuery<TBAToken[]>(address, async () => {
-    const data = await request<any>(
-      'https://api.studio.thegraph.com/query/46756/tba-nft/0.0.6',
-      graphQuery,
-      { address }
-    );
+  const query = useQuery<TBAToken[]>('tokens', async () => {
+    const data = await graphqlClient.request<any>(graphQuery);
 
     return data.createds
       .map((c) => ({
@@ -34,5 +29,6 @@ export const useTokens = () => {
       .sort((a, b) => Number(a.tokenId) - Number(b.tokenId));
   });
 
+  console.log(query);
   return query;
 };
