@@ -29,7 +29,10 @@ export const getTokens = async () => {
 };
 
 export const useTokens = () => {
-  const query = useQuery<TBAToken[]>('tokens', getTokens);
+  const query = useQuery<TBAToken[]>('tokens', getTokens, {
+    refetchInterval: 4000,
+    refetchOnReconnect: true,
+  });
 
   return query;
 };

@@ -29,6 +29,7 @@ export const useProfileStatsQuery = (profileId?: number) => {
     {
       refetchOnWindowFocus: true,
       enabled: Boolean(profileId),
+      refetchInterval: 10000,
     }
   );
 
