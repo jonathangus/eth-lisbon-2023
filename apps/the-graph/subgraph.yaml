@@ -1,0 +1,32 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: TBANFT
+    network: mumbai
+    source:
+      address: '0x42ea28ce31414af830ea274bc4b89b6c5bf5eb2b'
+      abi: TBANFT
+      startBlock: 35548323
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - Created
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: TBANFT
+          file: ./abis/TBANFT.json
+        - name: Lenshub
+          file: ./abis/Lenshub.json
+      eventHandlers:
+        - event: Created(address,address,uint256,string)
+          handler: handleCreated
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/tbanft.ts
