@@ -25,7 +25,7 @@ var stringToColour = function (str) {
 };
 
 const GetGradientIcon = ({ tokenId, ...props }: Props) => {
-  const color = stringToColour((tokenId * 200).toString());
+  const color = stringToColour((tokenId * 100).toString() + tokenId);
   const rgb = hexToRgb(color);
 
   return (
