@@ -11,7 +11,7 @@ const Page = () => {
   return (
     <>
       <Text h2 className=" mt-8 mb-4">
-        Latest posts
+        Recent posts from our ERC-6651 NFT
       </Text>
 
       <LensPosts tokens={tokens.data || []} />

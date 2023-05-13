@@ -36,8 +36,8 @@ const LensPosts = ({ tokens }: Props) => {
             <Grid.Container css={{ pl: '$6' }}>
               <Grid xs={12}>
                 <Text h4 css={{ lineHeight: '$xs' }} className="flex">
-                  <div className="mr-2">{'🌿'}</div>
                   {post.profile.handle}.lens
+                  <div className="ml-2">{'🌿'}</div>
                 </Text>
               </Grid>
               <Grid xs={10}>
