@@ -55,6 +55,7 @@ export interface TBANFTInterface extends utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
+    "ghoToken()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "lensHub()": FunctionFragment;
     "mintHandle(address,(string,string,address,bytes,string))": FunctionFragment;
@@ -64,7 +65,6 @@ export interface TBANFTInterface extends utils.Interface {
     "profileCreationProxyAddress()": FunctionFragment;
     "registry()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
-    "safeMint(address)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
     "setAccountImplementation(address)": FunctionFragment;
@@ -89,6 +89,8 @@ export interface TBANFTInterface extends utils.Interface {
       | "balanceOf(address)"
       | "getApproved"
       | "getApproved(uint256)"
+      | "ghoToken"
+      | "ghoToken()"
       | "isApprovedForAll"
       | "isApprovedForAll(address,address)"
       | "lensHub"
@@ -107,8 +109,6 @@ export interface TBANFTInterface extends utils.Interface {
       | "registry()"
       | "renounceOwnership"
       | "renounceOwnership()"
-      | "safeMint"
-      | "safeMint(address)"
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
       | "setAccountImplementation"
@@ -165,6 +165,11 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "getApproved(uint256)",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
+  encodeFunctionData(functionFragment: "ghoToken", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "ghoToken()",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
@@ -215,14 +220,6 @@ export interface TBANFTInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "renounceOwnership()",
     values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "safeMint",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "safeMint(address)",
-    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom(address,address,uint256)",
@@ -350,6 +347,8 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "getApproved(uint256)",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "ghoToken", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ghoToken()", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
@@ -390,11 +389,6 @@ export interface TBANFTInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership()",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "safeMint(address)",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -625,6 +619,10 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    ghoToken(overrides?: CallOverrides): Promise<[string]>;
+
+    "ghoToken()"(overrides?: CallOverrides): Promise<[string]>;
+
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -686,16 +684,6 @@ export interface TBANFT extends BaseContract {
     ): Promise<ContractTransaction>;
 
     "renounceOwnership()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    safeMint(
-      to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "safeMint(address)"(
-      to: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -851,6 +839,10 @@ export interface TBANFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  ghoToken(overrides?: CallOverrides): Promise<string>;
+
+  "ghoToken()"(overrides?: CallOverrides): Promise<string>;
+
   isApprovedForAll(
     owner: PromiseOrValue<string>,
     operator: PromiseOrValue<string>,
@@ -910,16 +902,6 @@ export interface TBANFT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   "renounceOwnership()"(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  safeMint(
-    to: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "safeMint(address)"(
-    to: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -1075,6 +1057,10 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    ghoToken(overrides?: CallOverrides): Promise<string>;
+
+    "ghoToken()"(overrides?: CallOverrides): Promise<string>;
+
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -1132,16 +1118,6 @@ export interface TBANFT extends BaseContract {
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
-
-    safeMint(
-      to: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "safeMint(address)"(
-      to: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
@@ -1353,6 +1329,10 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    ghoToken(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "ghoToken()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -1414,16 +1394,6 @@ export interface TBANFT extends BaseContract {
     ): Promise<BigNumber>;
 
     "renounceOwnership()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    safeMint(
-      to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "safeMint(address)"(
-      to: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -1584,6 +1554,10 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    ghoToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "ghoToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -1647,16 +1621,6 @@ export interface TBANFT extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     "renounceOwnership()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    safeMint(
-      to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "safeMint(address)"(
-      to: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

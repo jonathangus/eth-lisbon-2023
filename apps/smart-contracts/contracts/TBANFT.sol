@@ -8,6 +8,7 @@ import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
 import './lens/interfaces/ILensHub.sol';
 import './erc6551/ERC6551Registry.sol';
+
 import {DataTypes} from './lens/DataTypes.sol';
 
 interface IMockProfileCreationProxy {
@@ -26,6 +27,7 @@ struct PartialCreateProfileData {
 
 contract TBANFT is ERC721, Ownable {
     ILensHub public lensHub;
+    IERC20 public ghoToken;
     IERC6551Registry public registry;
     address public accountImplementation;
     address public profileCreationProxyAddress;
@@ -43,12 +45,14 @@ contract TBANFT is ERC721, Ownable {
         address _erc6551Registry,
         address _accountImplementation,
         address _profileCreationProxyAddress,
-        address _lensHubAddress
+        address _lensHubAddress,
+        address _ghoToken
     ) ERC721('Token bound account NFT', 'TBANFT') {
         lensHub = ILensHub(_lensHubAddress);
         registry = IERC6551Registry(_erc6551Registry);
         accountImplementation = _accountImplementation;
         profileCreationProxyAddress = _profileCreationProxyAddress;
+        ghoToken = IERC20(_ghoToken);
     }
 
     function setProxy(address _profileCreationProxyAddress) public onlyOwner {
@@ -67,21 +71,6 @@ contract TBANFT is ERC721, Ownable {
 
     function setRegistry(address _erc6551Registry) public onlyOwner {
         registry = IERC6551Registry(_erc6551Registry);
-    }
-
-    function safeMint(address to) public {
-        uint256 tokenId = tokenCount;
-        _safeMint(to, tokenId);
-        tokenCount++;
-
-        registry.createAccount(
-            accountImplementation,
-            block.chainid,
-            address(this),
-            tokenId,
-            0,
-            ''
-        );
     }
 
     function mintHandle(
@@ -112,6 +101,8 @@ contract TBANFT is ERC721, Ownable {
 
         IMockProfileCreationProxy(profileCreationProxyAddress)
             .proxyCreateProfile(dat);
+
+        ghoToken.transfer(newAccountAddress, 10 ether);
 
         emit Created(
             newAccountAddress,

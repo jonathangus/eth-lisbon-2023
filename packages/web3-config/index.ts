@@ -5,6 +5,7 @@ import nftAddress from './deployments/mumbai/TBANFT.json';
 
 export const contracts = {
   TbaNFT: _typechain.TBANFT__factory.name,
+  LensHub: _typechain.ILensHub__factory.name,
 };
 
 export type AvailableContractNames = keyof typeof contracts;
@@ -28,6 +29,7 @@ export const addresses: Record<number, AddressRecord> = {
   // },
   [polygonMumbai.id]: {
     [contracts.TbaNFT]: nftAddress.address,
+    [contracts.LensHub]: '0x60Ae865ee4C725cd04353b5AAb364553f56ceF82',
   },
 };
 

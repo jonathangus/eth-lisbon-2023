@@ -1,38 +1,37 @@
+import { Button, Loading, Input } from '@nextui-org/react';
 import { useState } from 'react';
+import { useNotifications } from 'reapop';
 import { useAccount, useQueryClient } from 'wagmi';
 import { useContractWrite } from 'wagmi-lfg';
-import {
-  AccountProxy__factory,
-  MockProfileCreationProxy__factory,
-  TBANFT__factory,
-} from 'web3-config';
+import { TBANFT__factory } from 'web3-config';
+import { useTokens } from '../hooks/useTokens';
 
-type Props = {};
-
-const MintHandleView = ({}: Props) => {
+const MintHandleView = () => {
   const [input, setInput] = useState('');
   const { address } = useAccount();
+  const { notify } = useNotifications();
+  const tokensQuery = useTokens();
 
-  const create = useContractWrite(TBANFT__factory, 'mintHandle', {
+  const { isLoading, write } = useContractWrite(TBANFT__factory, 'mintHandle', {
     reckless: true,
     onSuccess: () => {
       queryClient.invalidateQueries([address]);
+      notify(`${input}.test.lens handle created!`, 'success');
+      setInput('');
+
+      setTimeout(() => {
+        tokensQuery.refetch();
+      }, 3000);
+    },
+    onError: (e) => {
+      console.error(e);
+      notify('Failed creadting handle', 'error');
     },
   });
   const queryClient = useQueryClient();
 
   const onCreate = () => {
-    console.log({
-      to: address,
-      handle: input,
-      imageURI:
-        'https://cdn.stamp.fyi/avatar/eth:0x5389c019595b1f3d166b24392c6e25ca2705befa',
-      followModule: '0x0000000000000000000000000000000000000000',
-      followModuleInitData: '0x',
-      followNFTURI: 'ipfs://QmRQ38pPu99Znd9jjQ1gUeSN6G8w5M2spQA7z2nNSs3rh6',
-    });
-
-    const obj = create.write({
+    write({
       args: [
         address,
         {
@@ -45,34 +44,25 @@ const MintHandleView = ({}: Props) => {
         },
       ],
     });
-    setInput('');
   };
 
-  if (create.isLoading) {
-    return (
-      <div>
-        loading....
-        {create.writeResult?.data?.hash && (
-          <div>
-            tx:{' '}
-            <a
-              href={`https://mumbai.polygonscan.com/tx/${create.writeResult?.data?.hash}`}
-            >
-              {create.writeResult?.data?.hash}
-            </a>
-          </div>
-        )}
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <div>handle:</div>
-      <input onChange={(e) => setInput(e.target.value)} value={input} />
-      <button onClick={onCreate} disabled={input.length < 6}>
-        create handle
-      </button>
+    <div className="flex mr-4">
+      <Input
+        placeholder="wanted handle"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <Button
+        onClick={onCreate}
+        disabled={input.length < 6 || isLoading}
+        shadow
+        color="primary"
+        auto
+        className="ml-2"
+      >
+        {isLoading ? <Loading color="currentColor" size="sm" /> : 'create'}
+      </Button>
     </div>
   );
 };

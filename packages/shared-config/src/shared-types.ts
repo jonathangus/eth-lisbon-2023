@@ -45,4 +45,5 @@ export type TBAToken = {
   tokenId: string;
   ownedBy: string;
   accountAddress: string;
+  profileId: number;
 };

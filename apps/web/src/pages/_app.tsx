@@ -1,24 +1,64 @@
+import '../globals.css';
 import type { AppProps } from 'next/app';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Web3Provider from '../components/Web3Provider';
 import { NotificationsProvider } from 'reapop';
 import NotificationHandler from '../components/NotificationHandler';
-import '../style.css';
+import { Inter } from '@next/font/google';
+import { NextUIProvider, createTheme } from '@nextui-org/react';
 
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+// 2. Call `createTheme` and pass your custom values
+const theme = createTheme({
+  type: 'dark', // it could be "light" or "dark"
+  theme: {
+    colors: {
+      primary: '#00501e',
+
+      gradient:
+        'linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)',
+      link: '#5E1DAD',
+
+      // you can also create your own color
+      myColor: '#ff4ecd',
+
+      // ...  more colors
+    },
+    space: {},
+    fonts: {},
+  },
+});
 
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [client, setClient] = useState(false);
+
+  useEffect(() => {
+    setClient(true);
+  }, []);
+
+  if (!client) {
+    return null;
+  }
   return (
-    <QueryClientProvider client={queryClient}>
-      <NotificationsProvider>
-        <Web3Provider>
-          <Component {...pageProps} />
-          <NotificationHandler />
-        </Web3Provider>
-      </NotificationsProvider>
-    </QueryClientProvider>
+    <main className={`${inter.variable} font-sans`}>
+      <NextUIProvider>
+        <QueryClientProvider client={queryClient}>
+          <NotificationsProvider>
+            <Web3Provider>
+              <Component {...pageProps} />
+              <NotificationHandler />
+            </Web3Provider>
+          </NotificationsProvider>
+        </QueryClientProvider>
+      </NextUIProvider>
+    </main>
   );
 }
 

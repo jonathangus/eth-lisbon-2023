@@ -6,6 +6,7 @@ const LensHandle = ({ handle }: Props) => {
   return (
     <>
       <svg
+        className="max-w-full h-auto"
         width="450"
         height="450"
         viewBox="0 0 450 450"
