@@ -1,5 +1,6 @@
 import { TBAToken } from 'shared-config';
 import { Text, Avatar } from '@nextui-org/react';
+import MockedData from './MockedData';
 
 type Props = { token: TBAToken };
 
@@ -38,6 +39,7 @@ const TokenERC20 = ({}: Props) => {
   return (
     <div>
       <Text h2>Owned ERC20</Text>
+      <MockedData />
       <div className="grid grid-cols-3 gap-4">
         {tokens.map((item) => (
           <div key={item.name} className="flex items-center">

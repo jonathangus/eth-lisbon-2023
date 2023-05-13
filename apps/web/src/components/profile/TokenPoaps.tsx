@@ -1,5 +1,6 @@
 import { TBAToken } from 'shared-config';
 import { Text, Avatar } from '@nextui-org/react';
+import MockedData from './MockedData';
 
 type Props = { token: TBAToken };
 
@@ -34,6 +35,7 @@ const TokenPoaps = ({}: Props) => {
   return (
     <div>
       <Text h2>Collected Poaps</Text>
+      <MockedData />
       <div className="grid grid-cols-10 gap-6">
         {poaps.map((item) => (
           <div key={item.name} className="flex justify-center flex-col w-full">

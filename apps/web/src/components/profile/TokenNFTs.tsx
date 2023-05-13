@@ -1,4 +1,5 @@
 import { Text } from '@nextui-org/react';
+import MockedData from './MockedData';
 
 type Props = {};
 
@@ -17,6 +18,7 @@ const TokenNFTs = ({}: Props) => {
   return (
     <div>
       <Text h2>Owned NFTs</Text>
+      <MockedData />
       <div className="grid grid-cols-6 gap-4">
         {nfts.map((nft) => (
           <div>

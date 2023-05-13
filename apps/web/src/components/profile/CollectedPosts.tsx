@@ -1,6 +1,7 @@
 import { TBAToken } from 'shared-config';
 import { Text, Avatar } from '@nextui-org/react';
 import img from './LENS-profile.gif';
+import MockedData from './MockedData';
 
 type Props = {};
 
@@ -23,6 +24,7 @@ const CollectedPosts = ({}: Props) => {
   return (
     <div>
       <Text h2>Lens follower NFTs</Text>
+      <MockedData />
       <div className="grid grid-cols-3 gap-4">
         {items.map((item) => (
           <div key={item.name} className="relative">
