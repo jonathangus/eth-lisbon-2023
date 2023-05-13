@@ -15,7 +15,7 @@ const formatAddressToShort = (
 
 const TokenDisplay = ({ token }: Props) => {
   return (
-    <div className=" relative   aspect-square   shadow-sm overflow-hidden  ">
+    <div className=" relative   aspect-square     overflow-hidden  ">
       <div className="py">
         <GetGradientIcon tokenId={token.tokenId} />
       </div>
