@@ -6,7 +6,6 @@ import { Link, Text } from '@nextui-org/react';
 import { useAddress } from 'wagmi-lfg';
 import { TBANFT__factory } from 'web3-config';
 import NextLink from 'next/link';
-import GhoBalance from './GhoBalance';
 
 type Props = {
   token: TBAToken;
@@ -16,7 +15,7 @@ const TokenHeader = ({ token }: Props) => {
   const stats = useProfileStatsQuery(token.profileId);
   const address = useAddress(TBANFT__factory);
   return (
-    <div className="p-12 bg-slate-300">
+    <div className="py-24 px-12  bg-slate-300">
       <div className="flex">
         <div className=" w-[200px]">
           <TokenDisplay token={token} />
@@ -37,9 +36,6 @@ const TokenHeader = ({ token }: Props) => {
             >
               see on opensea
             </Link>
-          </div>
-          <div className="mt-6">
-            <NextLink href={`/`}>back</NextLink>
           </div>
         </div>
         <div className="ml-5">

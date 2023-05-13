@@ -12,6 +12,9 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import SelectHandle from '../components/SelectHandle';
 import MintHandleView from '../components/MintHandleView';
 import CreatePostButton from '../components/CreatePostButton';
+import { useRouter } from 'next/router';
+import NextLink from 'next/link';
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -42,14 +45,8 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [client, setClient] = useState(false);
+  const router = useRouter();
 
-  useEffect(() => {
-    setClient(true);
-  }, []);
-
-  if (!client) {
-    return null;
-  }
   return (
     <main className={`${inter.variable} font-sans`}>
       <NextUIProvider>
@@ -58,7 +55,14 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Web3Provider>
               <div className="p-4">
                 <div className="flex justify-between mb-4">
-                  <SelectHandle />
+                  <div className="flex items-center">
+                    <SelectHandle />
+                    {router.asPath !== '/' && (
+                      <NextLink className="ml-2" href={`/`}>
+                        home
+                      </NextLink>
+                    )}
+                  </div>
                   <div className="flex">
                     <CreatePostButton />
                     <MintHandleView />

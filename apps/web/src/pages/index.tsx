@@ -13,7 +13,7 @@ const Page = () => {
       {tokens.isLoading && <Loading size="lg" />}
       <TokenView tokens={tokens.data || []} />
 
-      <Text h2 className=" mt-8 mb-4">
+      <Text h2 className=" mt-12 mb-8">
         Recent posts from our ERC-6651 NFT
       </Text>
 

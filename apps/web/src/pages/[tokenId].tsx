@@ -32,7 +32,7 @@ const Page = () => {
       <div className="h-12" />
       <Text h2>Posts this token bound account have posted</Text>
 
-      <LensPosts tokens={[selectedToken]} />
+      <LensPosts withFollow={false} tokens={[selectedToken]} />
       <div className="h-12" />
       <TokenNFTs token={selectedToken} />
       <div className="h-12" />

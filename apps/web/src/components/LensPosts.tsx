@@ -7,9 +7,9 @@ import FollowProfile from './actions/FollowProfile';
 import { useSelectionStore } from '../store/useSelectionStore';
 import GetGradientIcon from './GetGradientIcon';
 
-type Props = { tokens: TBAToken[] };
+type Props = { tokens: TBAToken[]; withFollow?: boolean };
 
-const LensPosts = ({ tokens }: Props) => {
+const LensPosts = ({ tokens, withFollow = true }: Props) => {
   const postsQuery = usePostsQuery(tokens);
   const selectedToken = useSelectionStore((state) => state.selectedToken);
 
@@ -57,7 +57,7 @@ const LensPosts = ({ tokens }: Props) => {
             <Link href={`/${post.token?.tokenId}`}>
               view token bound account
             </Link>
-            {selectedToken && post.token && (
+            {selectedToken && post.token && withFollow && (
               <FollowProfile token={post.token} />
             )}
           </Card.Footer>

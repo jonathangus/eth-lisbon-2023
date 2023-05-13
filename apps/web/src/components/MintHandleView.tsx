@@ -1,10 +1,11 @@
 import { Button, Loading, Input } from '@nextui-org/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNotifications } from 'reapop';
 import { useAccount, useQueryClient } from 'wagmi';
 import { useContractWrite } from 'wagmi-lfg';
 import { TBANFT__factory } from 'web3-config';
 import { useTokens } from '../hooks/useTokens';
+import { lensClient } from '../lens-client';
 
 const MintHandleView = () => {
   const [input, setInput] = useState('');
@@ -31,7 +32,15 @@ const MintHandleView = () => {
   });
   const queryClient = useQueryClient();
 
-  const onCreate = () => {
+  const onCreate = async () => {
+    const handle = await lensClient.profile.fetch({
+      handle: `${input}.test`,
+    });
+
+    if (handle) {
+      notify('handle already taken!', 'error');
+      return;
+    }
     write({
       args: [
         address,

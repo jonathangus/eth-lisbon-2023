@@ -16,20 +16,20 @@ const TokenNFTs = ({ token }: Props) => {
         {data?.ownedNfts?.map((nft) => (
           <div>
             <div>
-              <Text h4> {nft.contractMetadata.name}</Text>
+              <Text h4> {nft?.contractMetadata?.name}</Text>
               <Text h5>
                 {nft.metadata.name || '#' + Number(nft.id.tokenId)}
               </Text>
               <Link
                 target="_blank"
                 href={`https://testnets.opensea.io/assets/mumbai/${
-                  nft.contract.address
-                }/${Number(nft.id.tokenId)}`}
+                  nft?.contract?.address
+                }/${Number(nft?.id.tokenId)}`}
               >
                 opensea
               </Link>
             </div>
-            <img src={nft.media[0].thumbnail} />
+            <img src={nft?.media && nft?.media[0].thumbnail} />
           </div>
         ))}
       </div>
