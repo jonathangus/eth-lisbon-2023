@@ -1,28 +1,35 @@
-import { Text } from '@nextui-org/react';
+import { Loading, Text, Link } from '@nextui-org/react';
 import MockedData from './MockedData';
+import { TBAToken } from 'shared-config';
+import { useNFTsOwnedQuery } from '../../hooks/useNFTsOwnedQuery';
 
-type Props = {};
+type Props = {
+  token: TBAToken;
+};
 
-const nfts = [
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-  'https://i.seadn.io/gcs/files/40841cf32061051f2bc1e452e1d73960.png?auto=format&dpr=1&w=1000',
-];
-
-const TokenNFTs = ({}: Props) => {
+const TokenNFTs = ({ token }: Props) => {
+  const { isLoading, data } = useNFTsOwnedQuery(token.accountAddress);
   return (
     <div>
       <Text h2>Owned NFTs</Text>
-      <MockedData />
-      <div className="grid grid-cols-6 gap-4">
-        {nfts.map((nft) => (
+      <div className="grid grid-cols-4 gap-4">
+        {data?.ownedNfts?.map((nft) => (
           <div>
-            <img src={nft} />
+            <div>
+              <Text h4> {nft.contractMetadata.name}</Text>
+              <Text h5>
+                {nft.metadata.name || '#' + Number(nft.id.tokenId)}
+              </Text>
+              <Link
+                target="_blank"
+                href={`https://testnets.opensea.io/assets/mumbai/${
+                  nft.contract.address
+                }/${Number(nft.id.tokenId)}`}
+              >
+                opensea
+              </Link>
+            </div>
+            <img src={nft.media[0].thumbnail} />
           </div>
         ))}
       </div>

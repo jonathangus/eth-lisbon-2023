@@ -6,3 +6,4 @@ export * as aave from "./aave";
 export * as account from "./account";
 export * as erc6551 from "./erc6551";
 export * as lens from "./lens";
+export { MockNFT__factory } from "./MockNFT__factory";

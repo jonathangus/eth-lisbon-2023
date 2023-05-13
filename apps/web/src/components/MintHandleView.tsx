@@ -20,6 +20,7 @@ const MintHandleView = () => {
       setInput('');
 
       setTimeout(() => {
+        queryClient.invalidateQueries([address]);
         tokensQuery.refetch();
       }, 3000);
     },

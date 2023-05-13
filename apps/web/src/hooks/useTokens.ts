@@ -17,17 +17,19 @@ const graphQuery = gql`
   }
 `;
 
-export const useTokens = () => {
-  const query = useQuery<TBAToken[]>('tokens', async () => {
-    const data = await graphqlClient.request<any>(graphQuery);
+export const getTokens = async () => {
+  const data = await graphqlClient.request<any>(graphQuery);
 
-    return data.createds
-      .map((c) => ({
-        ...c,
-        profileId: Number(c.profileId),
-      }))
-      .sort((a, b) => Number(a.tokenId) - Number(b.tokenId));
-  });
+  return data.createds
+    .map((c) => ({
+      ...c,
+      profileId: Number(c.profileId),
+    }))
+    .sort((a, b) => Number(a.tokenId) - Number(b.tokenId));
+};
+
+export const useTokens = () => {
+  const query = useQuery<TBAToken[]>('tokens', getTokens);
 
   return query;
 };

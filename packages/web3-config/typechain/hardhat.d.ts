@@ -169,6 +169,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MockProfileCreationProxy__factory>;
     getContractFactory(
+      name: "MockNFT",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MockNFT__factory>;
+    getContractFactory(
+      name: "IMockNFT",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IMockNFT__factory>;
+    getContractFactory(
       name: "IMockProfileCreationProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IMockProfileCreationProxy__factory>;
@@ -372,6 +380,16 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.MockProfileCreationProxy>;
+    getContractAt(
+      name: "MockNFT",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MockNFT>;
+    getContractAt(
+      name: "IMockNFT",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IMockNFT>;
     getContractAt(
       name: "IMockProfileCreationProxy",
       address: string,

@@ -25,105 +25,46 @@ import type {
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../../common";
+} from "../common";
 
-export type PartialCreateProfileDataStruct = {
-  handle: PromiseOrValue<string>;
-  imageURI: PromiseOrValue<string>;
-  followModule: PromiseOrValue<string>;
-  followModuleInitData: PromiseOrValue<BytesLike>;
-  followNFTURI: PromiseOrValue<string>;
-};
-
-export type PartialCreateProfileDataStructOutput = [
-  string,
-  string,
-  string,
-  string,
-  string
-] & {
-  handle: string;
-  imageURI: string;
-  followModule: string;
-  followModuleInitData: string;
-  followNFTURI: string;
-};
-
-export interface TBANFTInterface extends utils.Interface {
+export interface MockNFTInterface extends utils.Interface {
   functions: {
-    "accountImplementation()": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
-    "ghoToken()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "lensHub()": FunctionFragment;
-    "mintHandle(address,(string,string,address,bytes,string))": FunctionFragment;
-    "mockNft()": FunctionFragment;
     "name()": FunctionFragment;
-    "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "profileCreationProxyAddress()": FunctionFragment;
-    "registry()": FunctionFragment;
-    "renounceOwnership()": FunctionFragment;
+    "safeMint(address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
-    "setAccountImplementation(address)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
-    "setLensHub(address)": FunctionFragment;
-    "setProxy(address)": FunctionFragment;
-    "setRegistry(address)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "accountImplementation"
-      | "accountImplementation()"
       | "approve"
       | "approve(address,uint256)"
       | "balanceOf"
       | "balanceOf(address)"
       | "getApproved"
       | "getApproved(uint256)"
-      | "ghoToken"
-      | "ghoToken()"
       | "isApprovedForAll"
       | "isApprovedForAll(address,address)"
-      | "lensHub"
-      | "lensHub()"
-      | "mintHandle"
-      | "mintHandle(address,(string,string,address,bytes,string))"
-      | "mockNft"
-      | "mockNft()"
       | "name"
       | "name()"
-      | "owner"
-      | "owner()"
       | "ownerOf"
       | "ownerOf(uint256)"
-      | "profileCreationProxyAddress"
-      | "profileCreationProxyAddress()"
-      | "registry"
-      | "registry()"
-      | "renounceOwnership"
-      | "renounceOwnership()"
+      | "safeMint"
+      | "safeMint(address,uint256)"
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
-      | "setAccountImplementation"
-      | "setAccountImplementation(address)"
       | "setApprovalForAll"
       | "setApprovalForAll(address,bool)"
-      | "setLensHub"
-      | "setLensHub(address)"
-      | "setProxy"
-      | "setProxy(address)"
-      | "setRegistry"
-      | "setRegistry(address)"
       | "supportsInterface"
       | "supportsInterface(bytes4)"
       | "symbol"
@@ -132,18 +73,8 @@ export interface TBANFTInterface extends utils.Interface {
       | "tokenURI(uint256)"
       | "transferFrom"
       | "transferFrom(address,address,uint256)"
-      | "transferOwnership"
-      | "transferOwnership(address)"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "accountImplementation",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "accountImplementation()",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "approve",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
@@ -168,11 +99,6 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "getApproved(uint256)",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
-  encodeFunctionData(functionFragment: "ghoToken", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "ghoToken()",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
@@ -181,22 +107,8 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "isApprovedForAll(address,address)",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: "lensHub", values?: undefined): string;
-  encodeFunctionData(functionFragment: "lensHub()", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "mintHandle",
-    values: [PromiseOrValue<string>, PartialCreateProfileDataStruct]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "mintHandle(address,(string,string,address,bytes,string))",
-    values: [PromiseOrValue<string>, PartialCreateProfileDataStruct]
-  ): string;
-  encodeFunctionData(functionFragment: "mockNft", values?: undefined): string;
-  encodeFunctionData(functionFragment: "mockNft()", values?: undefined): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "name()", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner()", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [PromiseOrValue<BigNumberish>]
@@ -206,25 +118,12 @@ export interface TBANFTInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "profileCreationProxyAddress",
-    values?: undefined
+    functionFragment: "safeMint",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "profileCreationProxyAddress()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "registry", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "registry()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "renounceOwnership",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "renounceOwnership()",
-    values?: undefined
+    functionFragment: "safeMint(address,uint256)",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom(address,address,uint256)",
@@ -244,44 +143,12 @@ export interface TBANFTInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "setAccountImplementation",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setAccountImplementation(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "setApprovalForAll",
     values: [PromiseOrValue<string>, PromiseOrValue<boolean>]
   ): string;
   encodeFunctionData(
     functionFragment: "setApprovalForAll(address,bool)",
     values: [PromiseOrValue<string>, PromiseOrValue<boolean>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setLensHub",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setLensHub(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setProxy",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setProxy(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setRegistry",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setRegistry(address)",
-    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -317,23 +184,7 @@ export interface TBANFTInterface extends utils.Interface {
       PromiseOrValue<BigNumberish>
     ]
   ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
 
-  decodeFunctionResult(
-    functionFragment: "accountImplementation",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "accountImplementation()",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "approve(address,uint256)",
@@ -352,8 +203,6 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "getApproved(uint256)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "ghoToken", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "ghoToken()", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
@@ -362,40 +211,16 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "isApprovedForAll(address,address)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "lensHub", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "lensHub()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mintHandle", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "mintHandle(address,(string,string,address,bytes,string))",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "mockNft", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mockNft()", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner()", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "ownerOf(uint256)",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "profileCreationProxyAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "profileCreationProxyAddress()",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "registry", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "registry()", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "renounceOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "renounceOwnership()",
+    functionFragment: "safeMint(address,uint256)",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -407,37 +232,11 @@ export interface TBANFTInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setAccountImplementation",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setAccountImplementation(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "setApprovalForAll",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "setApprovalForAll(address,bool)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setLensHub", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setLensHub(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setProxy", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setProxy(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setRegistry",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setRegistry(address)",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -463,20 +262,10 @@ export interface TBANFTInterface extends utils.Interface {
     functionFragment: "transferFrom(address,address,uint256)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership(address)",
-    data: BytesLike
-  ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
-    "Created(address,address,uint256,string)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
 
@@ -487,14 +276,6 @@ export interface TBANFTInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
   getEvent(
     nameOrSignatureOrTopic: "ApprovalForAll(address,address,bool)"
-  ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Created"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "Created(address,address,uint256,string)"
-  ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
   ): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
   getEvent(
@@ -526,31 +307,6 @@ export type ApprovalForAllEvent = TypedEvent<
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
 
-export interface CreatedEventObject {
-  accountAddress: string;
-  ownedBy: string;
-  tokenId: BigNumber;
-  handle: string;
-}
-export type CreatedEvent = TypedEvent<
-  [string, string, BigNumber, string],
-  CreatedEventObject
->;
-
-export type CreatedEventFilter = TypedEventFilter<CreatedEvent>;
-
-export interface OwnershipTransferredEventObject {
-  previousOwner: string;
-  newOwner: string;
-}
-export type OwnershipTransferredEvent = TypedEvent<
-  [string, string],
-  OwnershipTransferredEventObject
->;
-
-export type OwnershipTransferredEventFilter =
-  TypedEventFilter<OwnershipTransferredEvent>;
-
 export interface TransferEventObject {
   from: string;
   to: string;
@@ -563,12 +319,12 @@ export type TransferEvent = TypedEvent<
 
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
 
-export interface TBANFT extends BaseContract {
+export interface MockNFT extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: TBANFTInterface;
+  interface: MockNFTInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -590,10 +346,6 @@ export interface TBANFT extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    accountImplementation(overrides?: CallOverrides): Promise<[string]>;
-
-    "accountImplementation()"(overrides?: CallOverrides): Promise<[string]>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -626,10 +378,6 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    ghoToken(overrides?: CallOverrides): Promise<[string]>;
-
-    "ghoToken()"(overrides?: CallOverrides): Promise<[string]>;
-
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -642,33 +390,9 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    lensHub(overrides?: CallOverrides): Promise<[string]>;
-
-    "lensHub()"(overrides?: CallOverrides): Promise<[string]>;
-
-    mintHandle(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "mintHandle(address,(string,string,address,bytes,string))"(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    mockNft(overrides?: CallOverrides): Promise<[string]>;
-
-    "mockNft()"(overrides?: CallOverrides): Promise<[string]>;
-
     name(overrides?: CallOverrides): Promise<[string]>;
 
     "name()"(overrides?: CallOverrides): Promise<[string]>;
-
-    owner(overrides?: CallOverrides): Promise<[string]>;
-
-    "owner()"(overrides?: CallOverrides): Promise<[string]>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -680,21 +404,15 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    profileCreationProxyAddress(overrides?: CallOverrides): Promise<[string]>;
-
-    "profileCreationProxyAddress()"(
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    registry(overrides?: CallOverrides): Promise<[string]>;
-
-    "registry()"(overrides?: CallOverrides): Promise<[string]>;
-
-    renounceOwnership(
+    safeMint(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "renounceOwnership()"(
+    "safeMint(address,uint256)"(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -713,16 +431,6 @@ export interface TBANFT extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    setAccountImplementation(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "setAccountImplementation(address)"(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
@@ -732,36 +440,6 @@ export interface TBANFT extends BaseContract {
     "setApprovalForAll(address,bool)"(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setLensHub(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "setLensHub(address)"(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setProxy(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "setProxy(address)"(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setRegistry(
-      _erc6551Registry: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "setRegistry(address)"(
-      _erc6551Registry: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -802,21 +480,7 @@ export interface TBANFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
   };
-
-  accountImplementation(overrides?: CallOverrides): Promise<string>;
-
-  "accountImplementation()"(overrides?: CallOverrides): Promise<string>;
 
   approve(
     to: PromiseOrValue<string>,
@@ -850,10 +514,6 @@ export interface TBANFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  ghoToken(overrides?: CallOverrides): Promise<string>;
-
-  "ghoToken()"(overrides?: CallOverrides): Promise<string>;
-
   isApprovedForAll(
     owner: PromiseOrValue<string>,
     operator: PromiseOrValue<string>,
@@ -866,33 +526,9 @@ export interface TBANFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  lensHub(overrides?: CallOverrides): Promise<string>;
-
-  "lensHub()"(overrides?: CallOverrides): Promise<string>;
-
-  mintHandle(
-    to: PromiseOrValue<string>,
-    vars: PartialCreateProfileDataStruct,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "mintHandle(address,(string,string,address,bytes,string))"(
-    to: PromiseOrValue<string>,
-    vars: PartialCreateProfileDataStruct,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  mockNft(overrides?: CallOverrides): Promise<string>;
-
-  "mockNft()"(overrides?: CallOverrides): Promise<string>;
-
   name(overrides?: CallOverrides): Promise<string>;
 
   "name()"(overrides?: CallOverrides): Promise<string>;
-
-  owner(overrides?: CallOverrides): Promise<string>;
-
-  "owner()"(overrides?: CallOverrides): Promise<string>;
 
   ownerOf(
     tokenId: PromiseOrValue<BigNumberish>,
@@ -904,19 +540,15 @@ export interface TBANFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  profileCreationProxyAddress(overrides?: CallOverrides): Promise<string>;
-
-  "profileCreationProxyAddress()"(overrides?: CallOverrides): Promise<string>;
-
-  registry(overrides?: CallOverrides): Promise<string>;
-
-  "registry()"(overrides?: CallOverrides): Promise<string>;
-
-  renounceOwnership(
+  safeMint(
+    to: PromiseOrValue<string>,
+    tokenId: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "renounceOwnership()"(
+  "safeMint(address,uint256)"(
+    to: PromiseOrValue<string>,
+    tokenId: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -935,16 +567,6 @@ export interface TBANFT extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  setAccountImplementation(
-    _accountImplementation: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "setAccountImplementation(address)"(
-    _accountImplementation: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   setApprovalForAll(
     operator: PromiseOrValue<string>,
     approved: PromiseOrValue<boolean>,
@@ -954,36 +576,6 @@ export interface TBANFT extends BaseContract {
   "setApprovalForAll(address,bool)"(
     operator: PromiseOrValue<string>,
     approved: PromiseOrValue<boolean>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setLensHub(
-    _lensHubAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "setLensHub(address)"(
-    _lensHubAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setProxy(
-    _profileCreationProxyAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "setProxy(address)"(
-    _profileCreationProxyAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setRegistry(
-    _erc6551Registry: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "setRegistry(address)"(
-    _erc6551Registry: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -1025,21 +617,7 @@ export interface TBANFT extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  transferOwnership(
-    newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "transferOwnership(address)"(
-    newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   callStatic: {
-    accountImplementation(overrides?: CallOverrides): Promise<string>;
-
-    "accountImplementation()"(overrides?: CallOverrides): Promise<string>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1072,10 +650,6 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    ghoToken(overrides?: CallOverrides): Promise<string>;
-
-    "ghoToken()"(overrides?: CallOverrides): Promise<string>;
-
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -1088,33 +662,9 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    lensHub(overrides?: CallOverrides): Promise<string>;
-
-    "lensHub()"(overrides?: CallOverrides): Promise<string>;
-
-    mintHandle(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "mintHandle(address,(string,string,address,bytes,string))"(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    mockNft(overrides?: CallOverrides): Promise<string>;
-
-    "mockNft()"(overrides?: CallOverrides): Promise<string>;
-
     name(overrides?: CallOverrides): Promise<string>;
 
     "name()"(overrides?: CallOverrides): Promise<string>;
-
-    owner(overrides?: CallOverrides): Promise<string>;
-
-    "owner()"(overrides?: CallOverrides): Promise<string>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1126,17 +676,17 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    profileCreationProxyAddress(overrides?: CallOverrides): Promise<string>;
+    safeMint(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
-    "profileCreationProxyAddress()"(overrides?: CallOverrides): Promise<string>;
-
-    registry(overrides?: CallOverrides): Promise<string>;
-
-    "registry()"(overrides?: CallOverrides): Promise<string>;
-
-    renounceOwnership(overrides?: CallOverrides): Promise<void>;
-
-    "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
+    "safeMint(address,uint256)"(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
@@ -1153,16 +703,6 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    setAccountImplementation(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setAccountImplementation(address)"(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
@@ -1172,36 +712,6 @@ export interface TBANFT extends BaseContract {
     "setApprovalForAll(address,bool)"(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setLensHub(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setLensHub(address)"(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setProxy(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setProxy(address)"(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setRegistry(
-      _erc6551Registry: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setRegistry(address)"(
-      _erc6551Registry: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1242,16 +752,6 @@ export interface TBANFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
   };
 
   filters: {
@@ -1277,28 +777,6 @@ export interface TBANFT extends BaseContract {
       approved?: null
     ): ApprovalForAllEventFilter;
 
-    "Created(address,address,uint256,string)"(
-      accountAddress?: null,
-      ownedBy?: null,
-      tokenId?: null,
-      handle?: null
-    ): CreatedEventFilter;
-    Created(
-      accountAddress?: null,
-      ownedBy?: null,
-      tokenId?: null,
-      handle?: null
-    ): CreatedEventFilter;
-
-    "OwnershipTransferred(address,address)"(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-    OwnershipTransferred(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-
     "Transfer(address,address,uint256)"(
       from?: PromiseOrValue<string> | null,
       to?: PromiseOrValue<string> | null,
@@ -1312,10 +790,6 @@ export interface TBANFT extends BaseContract {
   };
 
   estimateGas: {
-    accountImplementation(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "accountImplementation()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1348,10 +822,6 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    ghoToken(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "ghoToken()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -1364,33 +834,9 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    lensHub(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "lensHub()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    mintHandle(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "mintHandle(address,(string,string,address,bytes,string))"(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    mockNft(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "mockNft()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
     "name()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1402,21 +848,15 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    profileCreationProxyAddress(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "profileCreationProxyAddress()"(
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    registry(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "registry()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    renounceOwnership(
+    safeMint(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    "renounceOwnership()"(
+    "safeMint(address,uint256)"(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -1435,16 +875,6 @@ export interface TBANFT extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    setAccountImplementation(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setAccountImplementation(address)"(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
@@ -1454,36 +884,6 @@ export interface TBANFT extends BaseContract {
     "setApprovalForAll(address,bool)"(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setLensHub(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setLensHub(address)"(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setProxy(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setProxy(address)"(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setRegistry(
-      _erc6551Registry: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setRegistry(address)"(
-      _erc6551Registry: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -1524,27 +924,9 @@ export interface TBANFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    accountImplementation(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "accountImplementation()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1577,10 +959,6 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    ghoToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "ghoToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -1593,33 +971,9 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    lensHub(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "lensHub()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    mintHandle(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "mintHandle(address,(string,string,address,bytes,string))"(
-      to: PromiseOrValue<string>,
-      vars: PartialCreateProfileDataStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    mockNft(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "mockNft()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "name()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1631,23 +985,15 @@ export interface TBANFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    profileCreationProxyAddress(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "profileCreationProxyAddress()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    registry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "registry()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    renounceOwnership(
+    safeMint(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    "renounceOwnership()"(
+    "safeMint(address,uint256)"(
+      to: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1666,16 +1012,6 @@ export interface TBANFT extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    setAccountImplementation(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setAccountImplementation(address)"(
-      _accountImplementation: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
@@ -1685,36 +1021,6 @@ export interface TBANFT extends BaseContract {
     "setApprovalForAll(address,bool)"(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setLensHub(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setLensHub(address)"(
-      _lensHubAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setProxy(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setProxy(address)"(
-      _profileCreationProxyAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setRegistry(
-      _erc6551Registry: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setRegistry(address)"(
-      _erc6551Registry: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1753,16 +1059,6 @@ export interface TBANFT extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };

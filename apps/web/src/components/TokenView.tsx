@@ -1,6 +1,7 @@
 import { TBAToken } from 'shared-config';
 import TokenItem from './TokenItem';
 import { Text } from '@nextui-org/react';
+import Link from 'next/link';
 
 type Props = { tokens: TBAToken[] };
 

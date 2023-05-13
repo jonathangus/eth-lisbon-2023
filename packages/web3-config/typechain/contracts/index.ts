@@ -11,3 +11,4 @@ import type * as erc6551 from "./erc6551";
 export type { erc6551 };
 import type * as lens from "./lens";
 export type { lens };
+export type { MockNFT } from "./MockNFT";

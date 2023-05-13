@@ -14,6 +14,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const registry = await deployments.get('ERC6551Registry');
   const accountImplementation = await deployments.get('Account');
   const gho = await deployments.get('GhoToken');
+  const mockNft = await deployments.get('MockNFT');
 
   const profileCreationProxyAddress =
     '0x420f0257D43145bb002E69B14FF2Eb9630Fc4736';
@@ -24,6 +25,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     profileCreationProxyAddress,
     lensHub,
     gho.address,
+    mockNft.address,
   ];
 
   const deployment = await deploy(name, {
@@ -44,6 +46,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 };
 
 func.tags = [name];
-func.dependencies = ['ERC6551Registry', 'Account', 'GhoToken'];
+func.dependencies = ['ERC6551Registry', 'Account', 'GhoToken', 'MockNFT'];
 
 export default func;

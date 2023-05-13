@@ -1,7 +1,7 @@
 import request, { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { TBAToken } from 'shared-config';
-import { graphqlClient, lensGraphqlClient } from '../graph-clint';
+import axios from 'axios';
 
 const graphQuery = gql`
   query Stats($profileId: ProfileId!) {
@@ -16,18 +16,18 @@ const graphQuery = gql`
   }
 `;
 
-export const useProfileStatsQuery = (profileId?: number) => {
-  const query = useQuery<TBAToken[]>(
-    ['stats', profileId],
+export const useNFTsOwnedQuery = (address?: string) => {
+  const query = useQuery<any>(
+    ['address', address],
     async () => {
-      const data = await lensGraphqlClient.request<any>(graphQuery, {
-        profileId: '0x' + Number(profileId).toString(16),
-      });
+      const { data } = await axios.get(
+        `https://polygon-mumbai.g.alchemy.com/nft/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}/getNFTs?owner=${address}&withMetadata=true&pageSize=100`
+      );
 
-      return data.profile.stats;
+      return data;
     },
     {
-      enabled: Boolean(profileId),
+      enabled: Boolean(address),
     }
   );
 

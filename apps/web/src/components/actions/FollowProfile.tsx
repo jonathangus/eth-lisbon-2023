@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Account__factory, ILensHub__factory } from 'web3-config';
 import { useAddress, useContractWrite } from 'wagmi-lfg';
 import { useSelectionStore } from '../../store/useSelectionStore';
-import { lensClient } from '../../lens-client';
 import { useQueryClient } from 'react-query';
 import { Button, Loading } from '@nextui-org/react';
 import { TBAToken } from 'shared-config';

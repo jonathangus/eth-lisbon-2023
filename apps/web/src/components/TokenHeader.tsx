@@ -5,6 +5,8 @@ import { useProfileStatsQuery } from '../hooks/useProfileStatsQuery';
 import { Link, Text } from '@nextui-org/react';
 import { useAddress } from 'wagmi-lfg';
 import { TBANFT__factory } from 'web3-config';
+import NextLink from 'next/link';
+import GhoBalance from './GhoBalance';
 
 type Props = {
   token: TBAToken;
@@ -23,6 +25,7 @@ const TokenHeader = ({ token }: Props) => {
           <Text className="m-0" h5>
             {token.accountAddress}
           </Text>
+
           <Text h4 className="text-[#00501e]">
             {token.handle}.lens
           </Text>
@@ -34,6 +37,9 @@ const TokenHeader = ({ token }: Props) => {
             >
               see on opensea
             </Link>
+          </div>
+          <div className="mt-6">
+            <NextLink href={`/`}>back</NextLink>
           </div>
         </div>
         <div className="ml-5">
@@ -68,7 +74,7 @@ const TokenHeader = ({ token }: Props) => {
             </div>
           )}
         </div>
-        <div>
+        <div className="ml-auto">
           <FollowProfile token={token} />
         </div>
       </div>

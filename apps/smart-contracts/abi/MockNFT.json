@@ -2,34 +2,9 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_erc6551Registry",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_accountImplementation",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_profileCreationProxyAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_lensHubAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_ghoToken",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_mockNft",
-        "type": "address"
+        "internalType": "string",
+        "name": "_baseTokenURI",
+        "type": "string"
       }
     ],
     "stateMutability": "nonpayable",
@@ -89,56 +64,6 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "accountAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "ownedBy",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "handle",
-        "type": "string"
-      }
-    ],
-    "name": "Created",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnershipTransferred",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
         "indexed": true,
         "internalType": "address",
         "name": "from",
@@ -159,19 +84,6 @@
     ],
     "name": "Transfer",
     "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "accountImplementation",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
   },
   {
     "inputs": [
@@ -230,19 +142,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "ghoToken",
-    "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -268,96 +167,12 @@
   },
   {
     "inputs": [],
-    "name": "lensHub",
-    "outputs": [
-      {
-        "internalType": "contract ILensHub",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "handle",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "imageURI",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "followModule",
-            "type": "address"
-          },
-          {
-            "internalType": "bytes",
-            "name": "followModuleInitData",
-            "type": "bytes"
-          },
-          {
-            "internalType": "string",
-            "name": "followNFTURI",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct PartialCreateProfileData",
-        "name": "vars",
-        "type": "tuple"
-      }
-    ],
-    "name": "mintHandle",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "mockNft",
-    "outputs": [
-      {
-        "internalType": "contract IMockNFT",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "name",
     "outputs": [
       {
         "internalType": "string",
         "name": "",
         "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -383,34 +198,19 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "profileCreationProxyAddress",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "to",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "registry",
-    "outputs": [
+      },
       {
-        "internalType": "contract IERC6551Registry",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "renounceOwnership",
+    "name": "safeMint",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -470,19 +270,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_accountImplementation",
-        "type": "address"
-      }
-    ],
-    "name": "setAccountImplementation",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "operator",
         "type": "address"
       },
@@ -493,45 +280,6 @@
       }
     ],
     "name": "setApprovalForAll",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_lensHubAddress",
-        "type": "address"
-      }
-    ],
-    "name": "setLensHub",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_profileCreationProxyAddress",
-        "type": "address"
-      }
-    ],
-    "name": "setProxy",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_erc6551Registry",
-        "type": "address"
-      }
-    ],
-    "name": "setRegistry",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -606,19 +354,6 @@
       }
     ],
     "name": "transferFrom",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

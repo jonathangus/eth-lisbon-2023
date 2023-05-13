@@ -15,7 +15,7 @@ const formatAddressToShort = (
 
 const TokenDisplay = ({ token }: Props) => {
   return (
-    <div className=" relative   aspect-square   shadow-sm  ">
+    <div className=" relative   aspect-square   shadow-sm overflow-hidden  ">
       <div className="py">
         <div className="aspect-square   rounded-full overflow-hidden  ">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110">

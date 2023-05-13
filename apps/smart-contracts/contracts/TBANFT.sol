@@ -6,6 +6,8 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
+import {Strings} from '@openzeppelin/contracts/utils/Strings.sol';
+
 import './lens/interfaces/ILensHub.sol';
 import './erc6551/ERC6551Registry.sol';
 
@@ -15,6 +17,10 @@ interface IMockProfileCreationProxy {
     function proxyCreateProfile(
         DataTypes.CreateProfileData memory vars
     ) external;
+}
+
+interface IMockNFT {
+    function safeMint(address to, uint256 tokenId) external;
 }
 
 struct PartialCreateProfileData {
@@ -31,6 +37,7 @@ contract TBANFT is ERC721, Ownable {
     IERC6551Registry public registry;
     address public accountImplementation;
     address public profileCreationProxyAddress;
+    IMockNFT public mockNft;
 
     uint256 private tokenCount = 0;
 
@@ -46,13 +53,15 @@ contract TBANFT is ERC721, Ownable {
         address _accountImplementation,
         address _profileCreationProxyAddress,
         address _lensHubAddress,
-        address _ghoToken
+        address _ghoToken,
+        address _mockNft
     ) ERC721('Token bound account NFT', 'TBANFT') {
         lensHub = ILensHub(_lensHubAddress);
         registry = IERC6551Registry(_erc6551Registry);
         accountImplementation = _accountImplementation;
         profileCreationProxyAddress = _profileCreationProxyAddress;
         ghoToken = IERC20(_ghoToken);
+        mockNft = IMockNFT(_mockNft);
     }
 
     function setProxy(address _profileCreationProxyAddress) public onlyOwner {
@@ -103,7 +112,7 @@ contract TBANFT is ERC721, Ownable {
             .proxyCreateProfile(dat);
 
         ghoToken.transfer(newAccountAddress, 10 ether);
-
+        mockNft.safeMint(newAccountAddress, tokenId);
         emit Created(
             newAccountAddress,
             to,
