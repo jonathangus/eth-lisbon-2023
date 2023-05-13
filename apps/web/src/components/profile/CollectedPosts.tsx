@@ -1,25 +1,40 @@
 import { TBAToken } from 'shared-config';
 import { Text, Avatar } from '@nextui-org/react';
+import img from './LENS-profile.gif';
 
 type Props = {};
 
-const CollectedPosts = ({}: Props) => {
+const items = [
+  {
+    name: 'test',
+    img,
+  },
+  {
+    name: 'user',
+    img,
+  },
+  {
+    name: 'stani',
+    img,
+  },
+];
 
-    
-    return (
-        <Text h2>Owned ERC20</Text>
+const CollectedPosts = ({}: Props) => {
+  return (
+    <div>
+      <Text h2>Lens follower NFTs</Text>
       <div className="grid grid-cols-3 gap-4">
-        {tokens.map((item) => (
-          <div key={item.name} className="flex items-center">
-            <Avatar squared text={item.name} className="mr-2" />
-            <div>
-              <div>231.21 ${item.name}</div>
+        {items.map((item) => (
+          <div key={item.name} className="relative">
+            <img src={item.img.src} />
+            <div className="absolute w-full text-center bottom-2 z-20">
+              {item.name}.lens follower
             </div>
           </div>
         ))}
       </div>
-    )
-
+    </div>
+  );
 };
 
 export default CollectedPosts;

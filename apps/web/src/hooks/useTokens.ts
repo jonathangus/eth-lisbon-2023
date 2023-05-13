@@ -29,6 +29,5 @@ export const useTokens = () => {
       .sort((a, b) => Number(a.tokenId) - Number(b.tokenId));
   });
 
-  console.log(query);
   return query;
 };

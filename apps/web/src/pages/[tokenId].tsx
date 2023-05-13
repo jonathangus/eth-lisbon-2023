@@ -6,6 +6,7 @@ import LensPosts from '../components/LensPosts';
 import TokenNFTs from '../components/profile/TokenNFTs';
 import TokenERC20 from '../components/profile/TokenERC20';
 import TokenPoaps from '../components/profile/TokenPoaps';
+import CollectedPosts from '../components/profile/CollectedPosts';
 
 const Page = () => {
   const { query } = useRouter();
@@ -36,6 +37,8 @@ const Page = () => {
       <TokenERC20 token={selectedToken} />
       <div className="h-12" />
       <TokenPoaps token={selectedToken} />
+      <div className="h-12" />
+      <CollectedPosts />
     </div>
   );
 };

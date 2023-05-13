@@ -8,14 +8,13 @@ const SelectHandle = () => {
   const { data: tokens = [] } = useTokens();
   const handles = [
     ...tokens
-      .filter((token) => token.ownedBy.toLowerCase() === address.toLowerCase())
+      .filter((token) => token.ownedBy.toLowerCase() === address?.toLowerCase())
       .map((token) => token.handle),
   ];
   const setToken = useSelectionStore((state) => state.setToken);
   const selectedToken = useSelectionStore((state) => state.selectedToken);
   const selectedHandle = selectedToken?.handle;
 
-  console.log(tokens, handles);
   if (!address) {
     return <div />;
   }
@@ -23,6 +22,7 @@ const SelectHandle = () => {
   if (handles.length === 0) {
     return <div />;
   }
+
   return (
     <Dropdown>
       <Dropdown.Button flat>
